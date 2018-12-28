@@ -62,8 +62,16 @@ def resize(request, path_name, format, url):
         )
 
     # Resize and cache image
+    # if preset.get('crop'):
+    #     image.crop(preset.get('width'), preset.get('height'))
+    # else:
+    #     image.resize(preset.get('width'), preset.get('height'))
+    # image.save()
+    # 
     if preset.get('crop'):
         image.crop(preset.get('width'), preset.get('height'))
+    elif preset.get('cropbox'):
+        image.cropbox(preset.get('width'), preset.get('height'), preset.get('fill'))
     else:
         image.resize(preset.get('width'), preset.get('height'))
     image.save()
