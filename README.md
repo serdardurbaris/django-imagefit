@@ -123,8 +123,9 @@ your_template.html
 <img src="{{ "/static/image.png"|resize:'320x240,C' }}" />
 ```
 
-```html cropbox usage
-{% load imagefit %}
+```html 
+cropbox usage
+
 <img src="{{ "/static/image.png"|resize:'310x420,CB,FF0000' }}" />
 ```
 
