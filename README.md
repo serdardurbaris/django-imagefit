@@ -258,4 +258,4 @@ If so :
 
 ## Imagefit Developers
 
-_Aka note to self_: Deploy to pypi using `make deploy`.
+_Aka note to self_: Deploy to pypi using `make deploy`..
