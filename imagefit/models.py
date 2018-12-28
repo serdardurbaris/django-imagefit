@@ -1,6 +1,7 @@
 from __future__ import division
 from imagefit.conf import ext_to_format, settings
 from PIL import Image as PilImage
+from PIL import ImageOps
 
 import mimetypes
 try:
