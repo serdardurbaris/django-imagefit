@@ -66,8 +66,17 @@ pip install django-imagefit
 or the bleeding edge version
 
 ```
+orjinal repository
 pip install -e git+https://github.com/vinyll/django-imagefit.git#egg=django-imagefit
 ```
+
+
+```
+i added repository to the "cropbox"
+
+pip install -e git+https://github.com/serdardurbaris/django-imagefit.git#egg=django-imagefit
+```
+
 
 #### update INSTALLED_APPS
 
@@ -113,6 +122,12 @@ your_template.html
 <img src="{{ "/static/image.png"|resize:'320x240' }}" />
 <img src="{{ "/static/image.png"|resize:'320x240,C' }}" />
 ```
+
+```html cropbox usage
+{% load imagefit %}
+<img src="{{ "/static/image.png"|resize:'310x420,CB,FF0000' }}" />
+```
+
 
 This will display your _/static/image.png_:
 
@@ -170,6 +185,7 @@ IMAGEFIT_PRESETS = {
     'thumbnail': {'width': 64, 'height': 64, 'crop': True},
     'my_preset1': {'width': 300, 'height': 220},
     'my_preset2': {'width': 100},
+    'my_cropbox': {'width': 310, 'height': 420, 'cropbox': True, 'fill': '#FF0000'},
 }
 ```
 
