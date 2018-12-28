@@ -116,14 +116,27 @@ class Presets(object):
 
     @classmethod
     def from_string(cls, string):
-        """
-        Converts a <width>x<height> into a {'width': <width>,
-        'height': <height>} dict
-        return dict or None
-        """
-        if re.match('(\d+)x(\d+),?(\w*)', string):
-            sizes = [x for x in re.match(
-                '(\d+)x(\d+)(,?[c|C]?)', string).groups()]
-            return {
+        # if re.match('(\d+)x(\d+),?(\w*)', string):
+        #     sizes = [x for x in re.match(
+        #         '(\d+)x(\d+)(,?[c|C]?)', string).groups()]
+        #     return {
+        #         'width': int(sizes[0]), 'height': int(sizes[1]),
+        #         'crop': bool(sizes[2]),'cropbox': bool(sizes[3])
+        #     }
+
+        if re.match('(\d+)x(\d+),?(\w*),?(\w*),?(\w*)', string):
+            cons = string.split(",")
+            sizes = cons[0].split("x")
+            list = {
                 'width': int(sizes[0]), 'height': int(sizes[1]),
-                'crop': bool(sizes[2])}
+                'crop': False, 'cropbox': False
+                , 'fill': 'white'
+            }
+            if len(cons) > 1:
+                if cons[1] == 'C':
+                    list['crop'] = True
+                else:
+                    list['cropbox'] = True
+                if list['cropbox']:
+                    list['fill'] = "#"+cons[2]
+            return list
