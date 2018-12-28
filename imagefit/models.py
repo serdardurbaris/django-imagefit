@@ -64,6 +64,33 @@ class Image(object):
             int(new_h - box_diff[1]))
         self.pil = self.pil.crop(box)
         return self.pil
+    
+    def cropbox(self, width=None, height=None, fill=None):
+        img = self.pil
+        target_width = width
+        target_height = height
+
+        widthPercent = (width / float(img.size[0]))
+        if widthPercent >= 1.0:
+            return img
+
+        height = int((float(img.size[1]) * float(widthPercent)))
+        self.pil = img.resize((width, height), PilImage.ANTIALIAS)
+
+        w, h = self.pil.size
+        left = top = right = bottom = 0
+        if target_width > w:
+            delta = target_width - w
+            left = delta // 2
+            right = delta - left
+
+        if target_height > h:
+            delta = target_height - h
+            top = delta // 2
+            bottom = delta - top
+
+        self.pil = ImageOps.expand(self.pil, border=(left, top, right, bottom), fill=fill)
+        return self.pil
 
     def render(self):
         """
