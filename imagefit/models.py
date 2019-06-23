@@ -70,7 +70,8 @@ class Image(object):
         img = self.pil
         target_width = width
         target_height = height
-
+        if img.format == "PNG":
+            fill = "rgba(0, 0, 0, 0)"
         widthPercent = (width / float(img.size[0]))
         if widthPercent >= 1.0:
             return img
@@ -158,7 +159,7 @@ class Presets(object):
             list = {
                 'width': int(sizes[0]), 'height': int(sizes[1]),
                 'crop': False, 'cropbox': False
-                , 'fill': 'white'
+                ,'fill': 'white'
             }
             if len(cons) > 1:
                 if cons[1] == 'C':
@@ -166,5 +167,8 @@ class Presets(object):
                 else:
                     list['cropbox'] = True
                 if list['cropbox']:
-                    list['fill'] = "#"+cons[2]
+                    try:
+                        list['fill'] = "#" + cons[2]
+                    except:
+                        ""
             return list
