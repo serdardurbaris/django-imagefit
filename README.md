@@ -127,6 +127,9 @@ your_template.html
 cropbox usage
 
 <img src="{{ "/static/image.png"|resize:'310x420,CB,FF0000' }}" />
+
+cropbox transparent backgorund usage
+<img src="{{ "/static/image.png"|resize:'310x420,CB' }}" />
 ```
 
 
