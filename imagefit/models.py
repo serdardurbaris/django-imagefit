@@ -73,8 +73,8 @@ class Image(object):
         if img.format == "PNG":
             fill = "rgba(0, 0, 0, 0)"
         widthPercent = (width / float(img.size[0]))
-        if widthPercent >= 1.0:
-            return img
+        #if widthPercent >= 1.0:
+        #   return img
 
         height = int((float(img.size[1]) * float(widthPercent)))
         self.pil = img.resize((width, height), PilImage.ANTIALIAS)
